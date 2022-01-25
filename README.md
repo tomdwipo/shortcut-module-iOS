@@ -8,5 +8,5 @@
 
 ## Add Code snippets
 - press ```command shift G``` on finder
-- open directory ```~/Library/Developer/Xcode/UserData/CodeSnippets``
+- open directory ```~/Library/Developer/Xcode/UserData/CodeSnippets```
 - add files from ```CodeSnippets```
