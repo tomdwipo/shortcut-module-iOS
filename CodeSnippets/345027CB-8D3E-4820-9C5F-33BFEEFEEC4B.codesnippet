@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>private class TestableViewController: ViewController {
+    var presentCallCount = 0
+    var presentArgsViewController: [UIViewController] = []
+    var presentArgsAnimated: [Bool] = []
+    var presentArgsClosure: [(() -&gt; Void)?] = []
+    
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -&gt; Void)? = nil) {
+        presentCallCount += 1
+        presentArgsViewController.append(viewControllerToPresent)
+        presentArgsAnimated.append(flag)
+        presentArgsClosure.append(completion)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>345027CB-8D3E-4820-9C5F-33BFEEFEEC4B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Test Present View Controller</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import SwiftUI
+
+extension View {
+    func presentTo&lt;T: UIViewController&gt;(page: T) {
+        presentViewController()?.present(page, animated: true)
+    }
+    
+    func dismiss() {
+        presentViewController()?.dismiss(animated: true)
+    }
+    
+    func pushViewTo&lt;T: UIViewController&gt;(page: T) {
+        presentViewController()?.navigationController?.pushViewController(page, animated: true)
+    }
+    
+    func popView() {
+        presentViewController()?.navigationController?.popViewController(animated: true)
+    }
+    
+    private func presentViewController() -&gt; UIViewController? {
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        guard var topController = keyWindow?.rootViewController else { return nil }
+        while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
+        }
+        return topController
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>55A3BF61-FF33-4D1E-A304-9588132F7942</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>SwiftUI View extension navigate</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>protocol URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -&gt; Void) -&gt; URLSessionDataTask
+
+}
+
+extension URLSession: URLSessionProtocol {
+    
+}
+
+class ViewController: UIViewController {    private var dataTask: URLSessionDataTask?
+}
+
+// TEST
+class MockUrlSession: URLSessionProtocol {
+    var dataTaskCallCount = 0
+    var dataTaskArgsRequest: [URLRequest] = []
+    
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -&gt; Void) -&gt; URLSessionDataTask {
+        dataTaskCallCount += 1
+        dataTaskArgsRequest.append(request)
+        return DummyURLSessionDataTask()
+    }
+    
+    func verifyDataTask(with request: URLRequest, file: StaticString = #file, line: UInt = #line) {
+        guard dataTaskWasCalledOne(file: file, line: line) else { return }
+        XCTAssertEqual(dataTaskArgsRequest.first, request, "request",  file: file, line: line)
+    }
+    
+    private func dataTaskWasCalledOne(file: StaticString = #file, line: UInt = #line) -&gt; Bool {
+        verifyMethodCalledOnce(methodName: "dataTask(with:completionHandler)", callCount: dataTaskCallCount, describeArguments: "request: \(dataTaskArgsRequest)", file: file, line: line)
+    }
+    
+    func verifyMethodCalledOnce(methodName: String, callCount: Int, describeArguments: @autoclosure () -&gt; String, file: StaticString = #file, line: UInt = #line) -&gt; Bool {
+        if callCount == 0 {
+            XCTFail("Wanted but not invoked: \(methodName)", file: file, line: line)
+            return false
+        }
+        if callCount &gt; 1 {
+            XCTFail("Wanted 1 times but was called: \(methodName)", file: file, line: line)
+            return false
+        }
+        return true
+    }
+    
+}
+
+
+private class DummyURLSessionDataTask: URLSessionDataTask {
+    override func resume() {
+        
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>27108429-0DA2-47D7-9FF1-70453C579ACD</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Test Mock Url Session</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Foundation
+import Swinject
+
+public class &lt;#name#&gt;Assembly: Assembly {
+    public init(){
+        
+    }
+    public func assemble(container: Container) {
+        container.register(&lt;#name#&gt;Network.self) { _ in &lt;#name#&gt;NetworkImpl() }.inObjectScope(.container)
+        container.register(&lt;#name#&gt;Repository.self) { r in &lt;#name#&gt;RepositoryImpl(network: r.resolve(&lt;#name#&gt;Network.self)!) }.inObjectScope(.container)
+        container.register(&lt;#name#&gt;Usecase.self) { r in
+            let usecase = &lt;#name#&gt;Usecase(repository: r.resolve(&lt;#name#&gt;Repository.self)!)
+            return usecase
+        }.inObjectScope(.container)
+    }
+}
+
+
+public class Setup&lt;#name#&gt; {
+    static let container = Container()
+    static let assembler = Assembler([
+        &lt;#name#&gt;Assembly()
+    ],container: container)
+    
+    public static let usecase = assembler.resolver.resolve(&lt;#name#&gt;Usecase.self)!
+    //
+    //
+    //
+    //
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7C6E3E88-6E98-4B87-83B8-E22FA3A847F5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Setup Swinject Assembly </string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

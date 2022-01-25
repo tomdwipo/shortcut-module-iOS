@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>protocol UserDefaultsProtocol {
+    func set(_ value: Int, forKey defaultName: String)
+    func integer(forKey defaultName: String) -&gt; Int
+}
+
+
+extension UserDefaults: UserDefaultsProtocol {
+    
+}
+
+
+class ViewController: UIViewController {
+    var userDefaults: UserDefaultsProtocol = UserDefaults.standard
+    
+}
+
+// TEST
+class FakeUserDefaults: UserDefaultsProtocol {
+    var integers: [String:Int] = [:]
+    
+    func set(_ value: Int, forKey defaultName: String) {
+        integers[defaultName] = value
+    }
+    
+    func integer(forKey defaultName: String) -&gt; Int {
+        integers[defaultName] ?? 0
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3007FC2D-E861-4E6A-A06D-C5ED3DAF36AA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Test Fake User Defaults</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
